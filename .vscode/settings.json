@@ -1,0 +1,20 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    },
+    "cSpell.words": [
+        "autofocus",
+        "bools",
+        "Fluttertoast",
+        "logined",
+        "Noto",
+        "prefs",
+        "Saiwai",
+        "saiwainahito",
+        "sprintf",
+        "strs"
+    ],
+    "java.configuration.updateBuildConfiguration": "disabled",
+    "editor.formatOnSaveMode": "file",
+    "dart.lineLength": 110,
+}
