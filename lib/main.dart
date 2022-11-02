@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:quick_ide/pages/keyboard/keyboard.dart';
+import 'package:quick_ide/pages/keyboard/rich_text_controller.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,6 +13,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -31,7 +35,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  TextEditingController controller = TextEditingController();
+  TextEditingController controller = RichTextController(
+    stringMatchMap: {
+      'class': const TextStyle(color: Colors.yellow),
+      'while': const TextStyle(color: Colors.blue),
+    },
+    onMatch: ((match) {
+      print(match);
+      return '*';
+    }),
+  );
   ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
@@ -39,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         children: [
           Expanded(
-            flex: 5,
+            flex: 7,
             child: Scrollbar(
               controller: scrollController,
               thumbVisibility: true,
@@ -47,14 +60,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 controller: controller,
                 scrollController: scrollController,
                 decoration: InputDecoration(
+                  isDense: true,
+                  contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(3),
                   ),
                 ),
                 style: const TextStyle(fontSize: 24),
+                textAlign: TextAlign.left,
+                textAlignVertical: TextAlignVertical.top,
                 autofocus: true,
-                minLines: 2,
                 maxLines: null,
+                minLines: null,
+                expands: true,
                 showCursor: true,
                 readOnly: true,
               ),
