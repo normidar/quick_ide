@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:quick_ide/pages/flutter_eval_page/flutter_eval_page.dart';
 
 import '../keyboard/keyboard.dart';
 import '../keyboard/rich_text_controller.dart';
@@ -38,7 +39,13 @@ class InputPage extends StatelessWidget with WidgetsBindingObserver {
         appBar: AppBar(
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () async {
+                final navigator = Navigator.of(context);
+                await file.writeAsString(controller.text);
+                navigator.push(MaterialPageRoute(
+                  builder: ((context) => FlutterEvalPage(controller.text)),
+                ));
+              },
               icon: const Icon(Icons.golf_course),
             )
           ],

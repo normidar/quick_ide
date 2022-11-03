@@ -31,6 +31,9 @@ class KeyButton extends StatelessWidget {
               }
               typeController.typeText(text);
             },
+            onLongPress: () {
+              typeController.typeText(text.toUpperCase());
+            },
             child: Center(child: Text(text)),
           ),
         ),

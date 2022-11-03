@@ -39,8 +39,6 @@ import 'package:flutter/material.dart';
 
 
 class TWidget extends StatelessWidget {
-  TWidget(this.name);
-  final String name;
 
   @override
   Widget build(BuildContext context) {

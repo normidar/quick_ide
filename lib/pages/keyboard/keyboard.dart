@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quick_ide/pages/keyboard/key_button.dart';
 import 'package:quick_ide/pages/keyboard/type_controller.dart';
 
-const List<String> line7 = ['+', '-', '*', '/', '=', '&', '|'];
+const List<String> line7 = ['+', '-', '*', '/', ':', '=', '&', '|'];
 const List<String> line6 = ['!', '"', '#', '\$', '%', "'", '~', '^', '?'];
 const List<String> line5 = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'bs'];
 const List<String> line4 = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'];
