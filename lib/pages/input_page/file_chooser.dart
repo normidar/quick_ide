@@ -31,9 +31,23 @@ class FileChooser extends StatelessWidget {
                   final filePath = (await getExternalStorageDirectory())!.path;
                   print(await getExternalStorageDirectory());
                   print(filePath);
-                  final file = File(filePath + '/' + enterText);
+                  final file = File('$filePath/$enterText' '.dart');
                   if (!await file.exists()) {
                     file.create();
+                    await file.writeAsString("""
+import 'package:flutter/material.dart';
+
+
+class TWidget extends StatelessWidget {
+  TWidget(this.name);
+  final String name;
+
+  @override
+  Widget build(BuildContext context) {
+    return ;
+  }
+}
+""");
                   }
                 }
               },

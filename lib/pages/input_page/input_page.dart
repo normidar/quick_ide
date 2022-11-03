@@ -35,6 +35,14 @@ class InputPage extends StatelessWidget with WidgetsBindingObserver {
         return true;
       },
       child: Scaffold(
+        appBar: AppBar(
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.golf_course),
+            )
+          ],
+        ),
         body: Column(
           children: [
             Expanded(

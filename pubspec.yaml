@@ -41,6 +41,8 @@ dependencies:
 
   path_provider: ^2.0.11
 
+  flutter_eval: ^0.5.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
