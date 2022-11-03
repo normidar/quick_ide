@@ -1,4 +1,4 @@
-package com.example.quick_ide
+package com.figbox.quick_ide
 
 import io.flutter.embedding.android.FlutterActivity
 
