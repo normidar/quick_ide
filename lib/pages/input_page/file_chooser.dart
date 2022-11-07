@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:quick_ide/pages/input_page/input_page.dart';
 
@@ -27,9 +28,11 @@ class FileChooser extends StatelessWidget {
               onPressed: () async {
                 String enterText = controller.text;
                 if (enterText != '') {
-                  const directory = '/storage/emulated/0/Documents';
-                  final filePath = (await getExternalStorageDirectory())!.path;
+                  const filePath = '/storage/emulated/0/Documents';
+                  // final filePath = (await getApplicationSupportDirectory()).path;
                   print(await getExternalStorageDirectory());
+                  print(await getApplicationDocumentsDirectory());
+                  print(await getApplicationSupportDirectory());
                   print(filePath);
                   final file = File('$filePath/$enterText' '.dart');
                   if (!await file.exists()) {
@@ -46,6 +49,14 @@ class TWidget extends StatelessWidget {
   }
 }
 """);
+                    Fluttertoast.showToast(
+                        msg: "This is Center Short Toast",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                   }
                 }
               },

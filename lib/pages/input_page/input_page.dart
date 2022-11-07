@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:quick_ide/pages/flutter_eval_page/flutter_eval_page.dart';
 
 import '../keyboard/keyboard.dart';
@@ -16,10 +17,34 @@ class InputPage extends StatelessWidget with WidgetsBindingObserver {
     print(state);
   }
 
+  static const reservedWordStyle = TextStyle(color: Color.fromARGB(255, 38, 172, 255));
+
   TextEditingController controller = RichTextController(
-    stringMatchMap: {
-      'class': const TextStyle(color: Colors.yellow),
-      'while': const TextStyle(color: Colors.blue),
+    patternMatchMap: {
+      RegExp(r"'.*?'"): const TextStyle(color: Color.fromARGB(255, 224, 75, 20)),
+      RegExp(r'".*?"'): const TextStyle(color: Color.fromARGB(255, 224, 75, 20)),
+      RegExp(r'\bclass\b'): reservedWordStyle,
+      RegExp(r'\bwhile\b'): reservedWordStyle,
+      RegExp(r'@override\b'): reservedWordStyle,
+      RegExp(r'\breturn\b'): reservedWordStyle,
+      RegExp(r'\bimport\b'): reservedWordStyle,
+      RegExp(r'\bif\b'): reservedWordStyle,
+      RegExp(r'\belse\b'): reservedWordStyle,
+      RegExp(r'\bfor\b'): reservedWordStyle,
+      RegExp(r'\bas\b'): reservedWordStyle,
+      RegExp(r'\bfalse\b'): reservedWordStyle,
+      RegExp(r'\btrue\b'): reservedWordStyle,
+      RegExp(r'\bnull\b'): reservedWordStyle,
+      RegExp(r'\bbreak\b'): reservedWordStyle,
+      RegExp(r'\bcontinue\b'): reservedWordStyle,
+      RegExp(r'\bconst\b'): reservedWordStyle,
+      RegExp(r'\btry\b'): reservedWordStyle,
+      RegExp(r'\bcatch\b'): reservedWordStyle,
+      RegExp(r'\bfinal\b'): reservedWordStyle,
+      RegExp(r'\bvar\b'): reservedWordStyle,
+      RegExp(r'\bsuper\b'): reservedWordStyle,
+      RegExp(r'\bawait\b'): reservedWordStyle,
+      RegExp(r'\basync\b'): reservedWordStyle,
     },
     onMatch: ((match) {
       print(match);
@@ -40,6 +65,17 @@ class InputPage extends StatelessWidget with WidgetsBindingObserver {
           actions: [
             IconButton(
               onPressed: () async {
+                await file.writeAsString(controller.text);
+                Fluttertoast.showToast(
+                  msg: "File Saved",
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.BOTTOM,
+                );
+              },
+              icon: const Icon(Icons.save),
+            ),
+            IconButton(
+              onPressed: () async {
                 final navigator = Navigator.of(context);
                 await file.writeAsString(controller.text);
                 navigator.push(MaterialPageRoute(
@@ -47,7 +83,7 @@ class InputPage extends StatelessWidget with WidgetsBindingObserver {
                 ));
               },
               icon: const Icon(Icons.golf_course),
-            )
+            ),
           ],
         ),
         body: Column(
