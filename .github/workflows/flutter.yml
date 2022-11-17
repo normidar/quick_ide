@@ -27,3 +27,7 @@ jobs:
     - run: flutter pub get
     - run: flutter test
     - run: flutter build apk --no-tree-shake-icons
+    - uses: actions/upload-artifact@v3
+      with:
+        name: new_apk
+        path: build/app/outputs/flutter-apk/app-release.apk
