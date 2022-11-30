@@ -47,6 +47,8 @@ dependencies:
 
   provider: ^6.0.4
 
+  github: ^9.6.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

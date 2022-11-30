@@ -1,10 +1,11 @@
 import 'dart:io';
 
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:github/github.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:quick_ide/pages/input_page/input_page.dart';
+import 'package:quick_ide/pages/input_page/s.s.dart';
+import 'package:quick_ide/utils/github_util/github_util.dart';
 
 class FileChooser extends StatelessWidget {
   TextEditingController controller = TextEditingController();
@@ -68,21 +69,31 @@ class TWidget extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.open_in_browser),
         onPressed: () async {
-          final navigator = Navigator.of(context);
-          FilePickerResult? result = await FilePicker.platform.pickFiles();
+          GitHub github = GitHub(auth: Authentication.withToken(token));
+          Repository repo = await github.repositories.getRepository(RepositorySlug('normidar', 'quick_ide'));
+          final rsv = RepositoriesService(github);
+          GithubUtil.addNewFile(
+              repoService: rsv,
+              owner: 'normidar',
+              repoName: 'quick_ide',
+              filePath: 'filePath',
+              fileContent: 'fileContent');
 
-          if (result != null) {
-            File file = File(result.files.single.path!);
-            String fileContext = await file.readAsString();
-            navigator.push(MaterialPageRoute(builder: ((context) {
-              return InputPage(
-                file: file,
-                text: fileContext,
-              );
-            })));
-          } else {
-            // User canceled the picker
-          }
+          // final navigator = Navigator.of(context);
+          // FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+          // if (result != null) {
+          //   File file = File(result.files.single.path!);
+          //   String fileContext = await file.readAsString();
+          //   navigator.push(MaterialPageRoute(builder: ((context) {
+          //     return InputPage(
+          //       file: file,
+          //       text: fileContext,
+          //     );
+          //   })));
+          // } else {
+          //   // User canceled the picker
+          // }
         },
       ),
     );

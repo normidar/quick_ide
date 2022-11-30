@@ -65,7 +65,8 @@ class InputPage extends StatelessWidget with WidgetsBindingObserver {
           actions: [
             IconButton(
               onPressed: () async {
-                await file.writeAsString(controller.text);
+                // await file.writeAsString(controller.text);
+                file.writeAsStringSync(controller.text);
                 Fluttertoast.showToast(
                   msg: "File Saved",
                   toastLength: Toast.LENGTH_SHORT,
