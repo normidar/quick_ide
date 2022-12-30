@@ -37,35 +37,40 @@ class KeyButton extends StatelessWidget {
     return Expanded(
       flex: flex,
       child: Padding(
-        padding: const EdgeInsets.all(1.0),
-        child: Material(
-          color: Colors.blue.shade300,
-          child: Listener(
-            onPointerDown: ((event) => onTapDown()),
-            onPointerUp: (event) => onTapUp(),
-            onPointerCancel: (event) => onTapUp(),
-            child: InkWell(
-              onTap: () {
-                if (text == 'bs') {
-                  typeController.backspace();
-                  return;
-                } else if (text == 'Tab') {
-                  typeController.typeText('    ');
-                  return;
-                }
-                typeController.typeText(text);
-              },
-              onLongPress: () {
-                if (text == 'bs') {
-                  typeController.backspace();
-                  return;
-                } else if (text == 'Tab') {
-                  typeController.typeText('    ');
-                  return;
-                }
-                typeController.typeText(text.toUpperCase());
-              },
-              child: Center(child: Text(text)),
+        padding: const EdgeInsets.all(3.0),
+        child: Listener(
+          onPointerDown: ((event) => onTapDown()),
+          onPointerUp: (event) => onTapUp(),
+          onPointerCancel: (event) => onTapUp(),
+          child: InkWell(
+            onTap: () {
+              if (text == 'bs') {
+                typeController.backspace();
+                return;
+              } else if (text == 'Tab') {
+                typeController.typeText('    ');
+                return;
+              }
+              typeController.typeText(text);
+            },
+            onLongPress: () {
+              if (text == 'bs') {
+                typeController.backspace();
+                return;
+              } else if (text == 'Tab') {
+                typeController.typeText('    ');
+                return;
+              }
+              typeController.typeText(text.toUpperCase());
+            },
+            child: Container(
+              alignment: Alignment.center,
+              height: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: const Color.fromARGB(255, 196, 193, 193),
+              ),
+              child: Text(text),
             ),
           ),
         ),

@@ -19,7 +19,7 @@ class Keyboard extends StatelessWidget {
     TypeController typeController = TypeController(textEditingController);
     return Container(
       height: 160,
-      color: Colors.blue,
+      color: const Color.fromARGB(179, 110, 109, 109),
       child: Column(
         children: [
           Expanded(
