@@ -72,12 +72,8 @@ class TWidget extends StatelessWidget {
           GitHub github = GitHub(auth: Authentication.withToken(token));
           Repository repo = await github.repositories.getRepository(RepositorySlug('normidar', 'quick_ide'));
           final rsv = RepositoriesService(github);
-          GithubUtil.addNewFile(
-              repoService: rsv,
-              owner: 'normidar',
-              repoName: 'quick_ide',
-              filePath: 'filePath',
-              fileContent: 'fileContent');
+          final res = await GithubUtil.listRepo(repoService: rsv, user: 'normidar');
+          print(res);
 
           // final navigator = Navigator.of(context);
           // FilePickerResult? result = await FilePicker.platform.pickFiles();

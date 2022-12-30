@@ -25,4 +25,19 @@ class GithubUtil {
     final res = await repoService.createFile(RepositorySlug(owner, repoName), createFile);
     print('success ${res.toJson()}');
   }
+
+  static Future<List<String>> listRepo({
+    required RepositoriesService repoService,
+    required String user,
+  }) async {
+    List<String> rt = [];
+    final repos = repoService.listUserRepositories(
+      user,
+      sort: 'pushed',
+    );
+    await for (final repo in repos) {
+      rt.add(repo.name);
+    }
+    return rt.reversed.toList();
+  }
 }

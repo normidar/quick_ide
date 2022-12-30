@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:quick_ide/pages/input_page/file_chooser.dart';
+import 'package:quick_ide/pages/no_project_page/no_project_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
-      home: FileChooser(),
+      home: const NoProjectPage(),
     );
   }
 }
