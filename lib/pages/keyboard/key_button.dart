@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:quick_ide/pages/keyboard/type_controller.dart';
 
 class KeyButton extends StatelessWidget {
@@ -30,6 +31,27 @@ class KeyButton extends StatelessWidget {
 
   void onTapUp() {
     isPressed = false;
+  }
+
+  final Map<String, String> _svgMap = {
+    '\n': 'assets/svg/arrow-enter.svg',
+  };
+
+  Widget _getContext(String text) {
+    final svgInMap = _svgMap[text];
+    if (svgInMap != null) {
+      return SvgPicture.asset(
+        svgInMap,
+        color: Colors.white,
+      );
+    }
+    return Text(
+      text,
+      style: const TextStyle(
+        fontSize: 20,
+        color: Colors.white,
+      ),
+    );
   }
 
   @override
@@ -68,9 +90,9 @@ class KeyButton extends StatelessWidget {
               height: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: const Color.fromARGB(255, 196, 193, 193),
+                color: const Color.fromARGB(255, 157, 154, 154),
               ),
-              child: Text(text),
+              child: _getContext(text),
             ),
           ),
         ),
